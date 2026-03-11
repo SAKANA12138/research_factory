@@ -37,7 +37,7 @@ def _sync_search_arxiv(query: str, max_results: int, sort_by: arxiv.SortCriterio
 
 async def search_arxiv(
     query: str,
-    max_results: int = 50,
+    max_results: int = 100,
     sort_by: arxiv.SortCriterion = arxiv.SortCriterion.SubmittedDate,
 ) -> list[dict]:
     """Return a list of paper metadata dicts from arXiv (async-safe)."""
