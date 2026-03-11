@@ -17,7 +17,7 @@ from openai import AsyncOpenAI
 class LLMConfig:
     api_base: str = "https://models.github.ai/inference"
     api_key: str = ""
-    default_model: str = "openai/gpt-4.1"
+    default_model: str = "openai/gpt-4o"
     temperature: float = 0.4
     max_tokens: int = 8192
 
