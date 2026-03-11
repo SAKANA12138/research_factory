@@ -1,0 +1,39 @@
+"""Tests for BaseAgent JSON extraction logic."""
+
+import pytest
+
+from rf.base.agent import _extract_json
+
+
+class TestExtractJson:
+    def test_direct_json(self):
+        raw = '{"key": "value", "num": 42}'
+        result = _extract_json(raw)
+        assert result == {"key": "value", "num": 42}
+
+    def test_markdown_fenced_json(self):
+        raw = 'Here is the result:\n```json\n{"key": "value"}\n```\nDone.'
+        result = _extract_json(raw)
+        assert result == {"key": "value"}
+
+    def test_markdown_fenced_no_lang(self):
+        raw = '```\n{"a": 1}\n```'
+        result = _extract_json(raw)
+        assert result == {"a": 1}
+
+    def test_json_with_surrounding_text(self):
+        raw = 'The output is: {"score": 85, "grade": "B"} end of output.'
+        result = _extract_json(raw)
+        assert result["score"] == 85
+
+    def test_unparseable_returns_raw_text(self):
+        raw = "This is not JSON at all."
+        result = _extract_json(raw)
+        assert result["_parse_error"] is True
+        assert "not JSON" in result["raw_text"]
+
+    def test_nested_json(self):
+        raw = '{"outer": {"inner": [1, 2, 3]}, "flag": true}'
+        result = _extract_json(raw)
+        assert result["outer"]["inner"] == [1, 2, 3]
+        assert result["flag"] is True
