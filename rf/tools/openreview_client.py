@@ -15,7 +15,7 @@ logger = logging.getLogger("rf.tools")
 async def search_openreview(
     query: str,
     venue: str = "ICLR.cc/2026/Conference",
-    limit: int = 30,
+    limit: int = 60,
 ) -> list[dict]:
     """Search OpenReview for papers matching the query in a given venue."""
     # API v2: GET /notes with invitation filter
