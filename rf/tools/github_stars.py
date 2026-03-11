@@ -13,7 +13,7 @@ logger = logging.getLogger("rf.tools")
 async def fetch_trending_repos(
     query: str,
     min_stars: int = 100,
-    max_results: int = 20,
+    max_results: int = 50,
 ) -> list[dict]:
     """Search GitHub repos by topic, sorted by stars, return metadata."""
     url = "https://api.github.com/search/repositories"
