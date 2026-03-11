@@ -1,0 +1,41 @@
+"""Tests for LLM configuration loading."""
+
+import os
+import tempfile
+from pathlib import Path
+
+import pytest
+import yaml
+
+from rf.llm.client import LLMConfig
+
+
+class TestLLMConfig:
+    def test_env_var_resolution(self, tmp_path):
+        """Test that ${GITHUB_TOKEN} is resolved from environment."""
+        os.environ["TEST_RF_TOKEN"] = "test-token-12345"
+        config = {
+            "llm": {
+                "api_base": "https://models.github.ai/inference",
+                "api_key": "${TEST_RF_TOKEN}",
+                "default_model": "openai/gpt-4.1",
+                "temperature": 0.3,
+                "max_tokens": 4096,
+            }
+        }
+        cfg_path = tmp_path / "test_config.yaml"
+        cfg_path.write_text(yaml.dump(config))
+
+        loaded = LLMConfig.from_yaml(str(cfg_path))
+        assert loaded.api_key == "test-token-12345"
+        assert loaded.temperature == 0.3
+        assert loaded.max_tokens == 4096
+
+        del os.environ["TEST_RF_TOKEN"]
+
+    def test_defaults(self):
+        """Test default values."""
+        cfg = LLMConfig()
+        assert cfg.api_base == "https://models.github.ai/inference"
+        assert cfg.default_model == "openai/gpt-4.1"
+        assert cfg.temperature == 0.4
