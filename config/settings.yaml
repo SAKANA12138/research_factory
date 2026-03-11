@@ -13,7 +13,7 @@ pipeline:
   topic: "Grafting Linear Attention Operators into Transformer-based LLMs for Efficient Long-Context Inference"
   target_model_size: "8B-14B"
   quantization: "INT8"
-  hardware_budget_gb: 24            # 单卡显存预算 (GB)
+  hardware_budget_gb: 16            # 单卡显存预算 (GB)
 
   # 各阶段开关
   phases:
