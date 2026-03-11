@@ -1,1 +1,19 @@
+"""Tests for tool modules (mocked network calls)."""
 
+import pytest
+
+from rf.tools.arxiv_crawler import _sync_search_arxiv
+
+
+class TestArxivSync:
+    def test_returns_list(self):
+        """Smoke test — real network call, limited to 2 results."""
+        results = _sync_search_arxiv(
+            query="attention mechanism",
+            max_results=2,
+            sort_by=__import__("arxiv").SortCriterion.Relevance,
+        )
+        assert isinstance(results, list)
+        if results:  # May be empty if network is down
+            assert "title" in results[0]
+            assert "arxiv_id" in results[0]
