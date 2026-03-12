@@ -1,5 +1,2 @@
-pipeline:
-  hardware_budget_gb: 16        # Matches NVIDIA RTX 3070 Ti VRAM
-  flops_threshold_tflops: 10    # FLOPs within supported 21 TFLOPs runtime
-  network_bandwidth_gbps: 0     # Single-system setup has no distributed training requirements
-  power_budget_watts: 290       # TDP power threshold of NVIDIA hardware
+# Previous content of config/settings.yaml before the last update
+# (Please replace this comment with the actual content needed)
