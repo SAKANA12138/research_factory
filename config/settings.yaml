@@ -4,8 +4,8 @@ llm:
   # 也可替换为 GitHub Copilot SDK 的端点
   api_base: "https://models.github.ai/inference"
   api_key: "${GITHUB_TOKEN}"       # 从环境变量读取
-  default_model: "openai/gpt-4o"  # 可选: openai/o4-mini, anthropic/claude-sonnet-4, 等
-  temperature: 0.4
+  default_model: "openai/gpt-4"  # 可选: openai/o4-mini, anthropic/claude-sonnet-4, 等
+  temperature: 0.7
   max_tokens: 8192
 
 pipeline:
@@ -14,6 +14,11 @@ pipeline:
   target_model_size: "8B-14B"
   quantization: "INT8"
   hardware_budget_gb: 16            # 单卡显存预算 (GB)
+
+  # 新增默认审计阈值
+  flops_threshold_tflops: 10        # FLOPs 默认阈值 (单位：TeraFLOPs)
+  network_bandwidth_gbps: 400       # 网络带宽阈值 (单位：Gbps)
+  power_budget_watts: 300          # 功率预算阈值 (单位：瓦特)
 
   # 各阶段开关
   phases:
