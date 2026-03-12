@@ -37,13 +37,13 @@ class HardwareGuardian(BaseAgent):
     async def run(self, context: dict[str, Any]) -> dict[str, Any]:
         topic = context.get("topic", "")
         trend_report = context.get("trend_report", {})
-        budget_gb = context.get("hardware_budget_gb", 24)
+        budget_gb = context.get("hardware_budget_gb", 16)
         target_size = context.get("target_model_size", "8B-14B")
         quant = context.get("quantization", "INT8")
 
-        flops_estimation = context.get("flops_estimation", None)  # FLOPs estimator
-        network_bandwidth = context.get("network_bandwidth", None)  # GB/s
-        power_budget = context.get("power_budget", None)  # Watts
+        flops_estimation = context.get("flops_estimation", 21)  # FLOPs estimator
+        network_bandwidth = context.get("network_bandwidth", 0)  # GB/s
+        power_budget = context.get("power_budget", 290)  # Watts
 
         recommended = trend_report.get("recommended_focus", "")
         if isinstance(recommended, dict):
