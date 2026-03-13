@@ -59,7 +59,8 @@ class BaseAgent(ABC):
     def __init__(self, llm: LLMClient) -> None:
         self.llm = llm
         self.history: list[dict[str, str]] = []
-
+        self.spec = llm.config.agent_settings.get(self.role, {})
+        
     # ------------------------------------------------------------------
     # Core LLM interaction
     # ------------------------------------------------------------------
@@ -71,10 +72,17 @@ class BaseAgent(ABC):
             *self.history[-6:],  # Keep last 3 turns to manage context window
             {"role": "user", "content": user_msg},
         ]
+        
+        config = {
+            "model": runtime_kwargs.get("model") or self.spec.get("model"),
+            "temperature": runtime_kwargs.get("temperature") if "temperature" in runtime_kwargs else self.spec.get("temperature"),
+            "max_tokens": runtime_kwargs.get("max_tokens") or self.spec.get("max_tokens")
+        }
+        
         if json_mode:
-            result = await self.llm.chat_json(messages)
+            result = await self.llm.chat_json(messages, **config)
         else:
-            result = await self.llm.chat(messages)
+            result = await self.llm.chat(messages, **config)
         # Append to conversational memory
         self.history.append({"role": "user", "content": user_msg})
         self.history.append({"role": "assistant", "content": result})
