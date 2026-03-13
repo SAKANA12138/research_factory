@@ -38,7 +38,7 @@ class NoveltyAuditor(BaseAgent):
         paper_summaries = []
         for p in arxiv_papers[:25]:
             paper_summaries.append(
-                f"- **{p['title']}** ({p['arxiv_id']}): {p['abstract'][:200]}..."
+                f"- **{p['title']}** ({p['arxiv_id']}): {p['abstract'][:1000]}..."
             )
         corpus_text = "\n".join(paper_summaries) if paper_summaries else "(No papers found)"
 
