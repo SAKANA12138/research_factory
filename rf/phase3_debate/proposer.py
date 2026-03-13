@@ -50,7 +50,7 @@ class Proposer(BaseAgent):
             f"## Research Topic\n{context.get('topic', '')}\n\n"
             f"## Source Analysis\n{_safe_dump(context.get('source_analysis', {}))}\n\n"
             f"## Math Translation\n{_safe_dump(context.get('math_translation', {}))}\n\n"
-            f"## Conflict Report\n{_safe_dump(context.get('conflict_report', {}), 2000)}\n\n"
+            f"## Conflict Report\n{_safe_dump(context.get('conflict_report', {}), 10000)}\n\n"
             f"## Hardware Constraints\n"
             f"VRAM Budget: {context.get('hardware_budget_gb', 24)} GB\n"
             f"Quantization: {context.get('quantization', 'INT8')}\n"
