@@ -151,7 +151,7 @@
 ```bash
 # 克隆仓库
 git clone https://github.com/SAKANA12138/research_factory.git
-cd research-factory
+cd research_factory
 
 # 安装依赖
 pip install -e .
