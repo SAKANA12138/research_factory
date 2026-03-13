@@ -47,9 +47,9 @@ class ConflictDetector(BaseAgent):
             f"## Donor Operator\n"
             f"Name: {math_translation.get('operator_name', 'N/A')}\n"
             f"Math: {math_translation.get('math_formulation', 'N/A')}\n\n"
-            f"## PyTorch Code\n```python\n{pytorch_code[:2000]}\n```\n\n"
+            f"## PyTorch Code\n```python\n{pytorch_code[:10000]}\n```\n\n"
             f"## Shape Alignment\n"
-            f"{json.dumps(math_translation.get('shape_alignment', []), indent=2, ensure_ascii=False)[:1500]}\n\n"
+            f"{json.dumps(math_translation.get('shape_alignment', []), indent=2, ensure_ascii=False)[:7500]}\n\n"
             "Perform a comprehensive conflict detection analysis across DIM, NORM, and PE "
             "dimensions. Return structured JSON."
         )
