@@ -6,7 +6,7 @@ Supports any model available on the endpoint: GPT-4.1, o4-mini, Claude, etc.
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 import yaml
