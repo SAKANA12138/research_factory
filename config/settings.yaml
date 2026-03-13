@@ -1,12 +1,49 @@
 # Research Factory RF-1.5 Configuration
 llm:
-  # GitHub Models API (OpenAI-compatible endpoint)
-  # 也可替换为 GitHub Copilot SDK 的端点
+  api_key: "${GITHUB_TOKEN}"
   api_base: "https://models.github.ai/inference"
-  api_key: "${GITHUB_TOKEN}"       # 从环境变量读取
-  default_model: "openai/gpt-4o"  # 可选: openai/o4-mini, anthropic/claude-sonnet-4, 等
+  default_model: "openai/gpt-4o"
   temperature: 0.4
-  max_tokens: 8192
+  max_tokens: 4096
+
+agents:
+  TrendAnalyst:
+    model: "openai/gpt-4o"
+    temperature: 0.2
+  HardwareGuardian:
+    model: "openai/gpt-4o-mini"
+    temperature: 0.0
+  NoveltyAuditor:
+    model: "openai/gpt-4o"
+    temperature: 0.1
+  SourceArchaeologist:
+    model: "openai/gpt-4o"
+    temperature: 0.2
+  MathTranslator:
+    model: "openai/gpt-4o"
+    temperature: 0.0
+  ConflictDetector:
+    model: "openai/gpt-4o"
+    temperature: 0.3
+  Proposer:
+    model: "openai/gpt-4o"
+    temperature: 0.8
+  Critic:
+    model: "openai/gpt-4o"
+    temperature: 0.9
+  Mediator:
+    model: "openai/gpt-4o"
+    temperature: 0.4
+  QualityInspector:
+    model: "openai/gpt-4o-mini"
+    temperature: 0.1
+  PublicationStrategist:
+    model: "openai/gpt-4o"
+    temperature: 0.6
+  EditorInChief:
+    model: "openai/gpt-4o"
+    temperature: 0.3
+    max_tokens: 8192
 
 pipeline:
   # 研究主题（可运行时覆盖）
