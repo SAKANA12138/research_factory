@@ -42,9 +42,9 @@ class QualityInspector(BaseAgent):
 
     async def run(self, context: dict[str, Any]) -> dict[str, Any]:
         user_msg = (
-            f"## Final Experiment Plan\n{_safe_dump(context.get('final_plan', {}), 5000)}\n\n"
+            f"## Final Experiment Plan\n{_safe_dump(context.get('final_plan', {}), 25000)}\n\n"
             f"## Mathematical Formulation\n{_safe_dump(context.get('math_translation', {}))}\n\n"
-            f"## Conflict Report\n{_safe_dump(context.get('conflict_report', {}), 2000)}\n\n"
+            f"## Conflict Report\n{_safe_dump(context.get('conflict_report', {}), 10000)}\n\n"
             "Perform a comprehensive quality self-inspection. Return JSON."
         )
 
