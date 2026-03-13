@@ -45,7 +45,7 @@ class MathTranslator(BaseAgent):
             f"## Model Architecture\n"
             f"{json.dumps(architecture, indent=2, ensure_ascii=False)}\n\n"
             f"## Identified Grafting Points\n"
-            f"{json.dumps(grafting_points, indent=2, ensure_ascii=False)[:3000]}\n\n"
+            f"{json.dumps(grafting_points, indent=2, ensure_ascii=False)[:15000]}\n\n"
             f"## Recommended Operator Focus\n{recommended}\n\n"
             "For the top-priority grafting point, produce:\n"
             "1. The mathematical formulation of the replacement attention operator.\n"
