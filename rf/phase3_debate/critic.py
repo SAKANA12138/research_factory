@@ -46,11 +46,11 @@ class Critic(BaseAgent):
     async def run(self, context: dict[str, Any]) -> dict[str, Any]:
         user_msg = (
             f"## Proposer's Experiment Plan\n"
-            f"{_safe_dump(context.get('proposal', {}), 5000)}\n\n"
+            f"{_safe_dump(context.get('proposal', {}), 25000)}\n\n"
             f"## Hardware Audit\n"
-            f"{_safe_dump(context.get('hardware_audit', {}), 2000)}\n\n"
+            f"{_safe_dump(context.get('hardware_audit', {}), 10000)}\n\n"
             f"## Novelty Audit\n"
-            f"{_safe_dump(context.get('novelty_audit', {}), 2000)}\n\n"
+            f"{_safe_dump(context.get('novelty_audit', {}), 10000)}\n\n"
             "Act as the harshest possible reviewer. Find every flaw. Return JSON."
         )
 
