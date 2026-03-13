@@ -53,7 +53,7 @@ class PublicationStrategist(BaseAgent):
 
         user_msg = (
             f"## Quality Report\n{_safe_dump(quality_report)}\n\n"
-            f"## Novelty Audit\n{_safe_dump(novelty_audit, 2000)}\n\n"
+            f"## Novelty Audit\n{_safe_dump(novelty_audit, 10000)}\n\n"
             f"## Final Plan Summary\n"
             f"Title: {plan_title}\n"
             f"Go/No-Go: {go_decision}\n\n"
