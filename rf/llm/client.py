@@ -20,6 +20,7 @@ class LLMConfig:
     default_model: str = "openai/gpt-4o"
     temperature: float = 0.4
     max_tokens: int = 8192
+    agent_settings: dict[str, dict] = field(default_factory=dict)
 
     @classmethod
     def from_yaml(cls, path: str = "config/settings.yaml") -> "LLMConfig":
@@ -39,6 +40,7 @@ class LLMConfig:
             default_model=llm_cfg.get("default_model", cls.default_model),
             temperature=llm_cfg.get("temperature", cls.temperature),
             max_tokens=llm_cfg.get("max_tokens", cls.max_tokens),
+            agent_settings=raw.get("agents", {})
         )
 
 
